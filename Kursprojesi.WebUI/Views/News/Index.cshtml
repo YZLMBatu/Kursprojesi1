@@ -1,0 +1,16 @@
+﻿@model IEnumerable<News>
+
+@{
+	ViewData["Title"] = "Fırsatlar";
+}
+
+<div class="my-5" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+    <h1 class="text-center">KAMPANYALARIMIZ</h1>
+    <div class="row ">
+        @foreach (var item in Model)
+        {
+            <partial name="_NewsView" model="item" />
+
+        }
+    </div>
+</div>

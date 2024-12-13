@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Eticaret.Core.Entities.Odeme>
+
+@{
+    ViewData["Title"] = "Siparişler";
+}
+
+
+<table class="table table-borderless">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppUserId)
+            </th>
+            
+            
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppUser.Name)
+                @Html.DisplayFor(modelItem => item.AppUser.SurName)
+            </td>
+            
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+                <td>
+                    <a class="btn btn-outline-success btn-sm" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-bars"></i> Düzenle</a>
+                    <a class="btn accordion-collapse btn-sm" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-magnifying-glass"></i> Detay</a>
+                    <a class="btn btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash"></i> Kayıt Sil</a>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

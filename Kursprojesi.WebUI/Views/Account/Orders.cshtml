@@ -1,0 +1,87 @@
+﻿    @model IEnumerable<Odeme>
+
+@{
+	ViewData["Title"] = "Orders";
+}
+
+
+
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.OrderNo)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.TotalPrice)
+			</th>
+
+			
+			<th>
+				@Html.DisplayNameFor(model => model.OrderDate)
+			</th>
+			<th>Sipariş özeti</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Id)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.TotalPrice) TL
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.OrderDate)
+				</td>
+				<td>
+					@item.OdemeLines.Count ürün
+				</td>
+				
+			</tr>
+			<tr>
+				<table class="table table-sm">
+					<tr>
+						<th></th>
+						<th>ÜRÜN</th>
+						<th>FİYAT</th>
+						<th>ADET</th>
+						<th>TOPLAM</th>
+					</tr>
+					<tbody>
+
+						@foreach (var item2 in item.OdemeLines)
+						{
+							<tr>
+								<td>
+									<img src="/Image/Product/@item2.Product.Image" height="40" />
+								</td>
+								<td>
+									<a class="nav-link text-dark" href="/Products/Details/@item2.Product.Id">
+										@item2.Product.Name
+									</a>
+								</td>
+								<td>
+									@item2.UnitPrice.ToString("c")
+								</td>
+								<td>
+									@item2.Quantity
+								</td>
+								<td>
+									@((item2.Quantity * item2.UnitPrice).ToString("c"))
+								</td>
+
+							</tr>
+						}
+
+
+					</tbody>
+
+				</table>
+
+			</tr>
+		}
+	</tbody>
+</table>

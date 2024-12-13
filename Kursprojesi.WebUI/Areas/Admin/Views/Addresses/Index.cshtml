@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Eticaret.Core.Entities.Address>
+
+@{
+    ViewData["Title"] = "Adres";
+}
+
+
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-info"><i class="fa-solid fa-plus"></i> Yeni Kullanıcı Ekle </a>
+</p>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.District)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsBillingAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeliveryAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppUser)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.District)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsBillingAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeliveryAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppUser.Email)
+            </td>
+            <td>
+                    <a class="btn btn-outline-success btn-sm" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-bars"></i> Düzenle</a>
+                    <a class="btn accordion-collapse btn-sm" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-magnifying-glass"></i> Detay</a>
+                    <a class="btn btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash"></i> Kayıt Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

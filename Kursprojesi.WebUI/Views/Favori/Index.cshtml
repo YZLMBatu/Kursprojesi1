@@ -1,0 +1,68 @@
+﻿@model List<Product>
+
+@{
+	ViewData["Title"] = "Favori Sayfası";
+}
+
+
+
+<section class="container my-5">
+	<div class="text-center">
+		<h1 class="display-4">FAVORİLERİM</h1>
+	</div>
+	<div class="row">
+		<div class="col-md-10">
+			<div class="table-responsive">
+				@if (Model.Any())
+				{
+					<table class="table table-hover">
+						<tr>
+							<th></th>
+							<th>ÜRÜN</th>
+							<th>FİYAT</th>
+							<th></th>
+						</tr>
+						<tbody>
+
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td>
+										<img src="/Image/Product/@item.Image" height="40" />
+									</td>
+									<td>
+										<a class="nav-link text-dark" href="/Products/Details/@item.Id">
+											@item.Name
+										</a>
+									</td>
+									<td>
+										@item.Price.ToString("c")
+									</td>
+									<td>
+										<form asp-action="Remove" asp-controller="Favori">
+											<input type="hidden" name="ProductId" value="@item.Id" />
+											<button class="btn btn-sm btn-danger" type="submit">
+												<i class="bi-x-lg"></i>
+											</button>
+										</form>
+									</td>
+								</tr>
+							}
+
+
+						</tbody>
+
+					</table>
+				}
+				else
+				{
+					<div class="container">
+						<div class="alert alert-warning my-5">
+							<h3>Favorileriniz Yoktur</h3>
+						</div>
+					</div>	
+				}
+			</div>
+		</div>
+	</div>
+</section>

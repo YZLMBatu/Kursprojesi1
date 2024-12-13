@@ -1,0 +1,115 @@
+﻿@model CartViewModel
+
+@{
+	ViewData["Title"] = "SEPETİM";
+}
+
+<section class="container my-5">
+	<div class="text-center">
+		<h1 class="display-4">SEPETİM</h1>
+	</div>
+	<div class="row">
+		@if (Model.CartLines.Any())
+		{
+			<div class="col-md-8">
+				<div class="table-responsive">
+
+					<table class="table table-hover">
+						<tr>
+							<th></th>
+							<th>ÜRÜN</th>
+							<th>FİYAT</th>
+							<th>ADET</th>
+							<th>TOPLAM</th>
+						</tr>
+						<tbody>
+
+							@foreach (var item in Model.CartLines)
+							{
+								<tr>
+									<td>
+										<img src="/Image/Product/@item.Product.Image" height="40" />
+									</td>
+									<td>
+										<a class="nav-link text-dark" href="/Products/Details/@item.Product.Id">
+											@item.Product.Name
+										</a>
+									</td>
+									<td>
+										@item.Product.Price.ToString("c")
+									</td>
+									<td>
+										@item.Quantity
+									</td>
+									<td>
+										@((item.Quantity * item.Product.Price).ToString("c"))
+									</td>
+									<td>
+										<form asp-action="Remove" asp-controller="Sepet">
+											<input type="hidden" name="ProductId" value="@item.Product.Id" />
+											<button class="btn btn-sm btn-danger" type="submit" onclick="alert('SİLMEK İSTEDİĞİNE EMİN MİSİN')">
+												<i class="bi-x-lg"></i>
+												
+												
+											</button>
+										</form>
+									</td>
+								</tr>
+							}
+
+
+						</tbody>
+
+					</table>
+
+				</div>
+			</div>
+			<div class="col-md-4" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+				<div>
+					<h4 >Sepet Toplamı</h4>
+				</div>
+				<table class="table">
+					<tr>
+						<td>Aratoplam</td>
+						<td>
+							@Model.TotalPrice.ToString("c")
+						</td>
+					</tr>
+					<tr>
+						<td>Kargo(1000 TL ÜZERİ ÜCRETSİZ)</td>
+						<td>
+							@(Model.TotalPrice > 1000 ? "ÜCRETSİZ KARGO" : Model.CartLines.Any() ? "99$" : "0$")
+						</td>
+					</tr>
+					
+					<tr>
+						<th>Sipariş Toplamı</th>
+						<td>
+							@(Model.TotalPrice > 999 ? Model.TotalPrice.ToString("c") : (Model.CartLines.Any() ? Model.TotalPrice + 99 : Model.TotalPrice.ToString("c")))
+						</td>
+					</tr>
+					
+					
+				</table>
+				<div class="text-center">
+					<a href="/" class="btn btn-primary">
+						Alışverişe Devam Et
+
+					</a>
+					<a href="/Sepet/SatınAl" class="btn btn-danger">Satın Al</a>
+				</div>
+
+				
+			</div>
+
+		}
+		else
+		{
+			<div class="container">
+				<div class="alert alert-warning my-5">
+					<h3>SEPETİNİZDE ÜRÜN  YOKTUR</h3>
+				</div>
+			</div>
+		}
+	</div>
+</section>
