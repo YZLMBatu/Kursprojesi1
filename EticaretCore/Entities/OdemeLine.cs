@@ -11,7 +11,7 @@ namespace Eticaret.Core.Entities
         public Odeme? Odeme { get; set; }
         [Display(Name = "Ürün No")]
         public int ProductId { get; set; }
-        [Display(Name = "Ürün"),]
+        [Display(Name = "Ürün")]
         public Product? Product { get; set; }
         [Display(Name = "Tutar")]
         public int Quantity { get; set; }

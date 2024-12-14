@@ -4,6 +4,7 @@ using Eticaret.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eticaret.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20241213182913_OrderStateEkle")]
+    partial class OrderStateEkle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -130,14 +133,14 @@ namespace Eticaret.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2024, 12, 14, 13, 2, 57, 501, DateTimeKind.Local).AddTicks(3719),
+                            CreateDate = new DateTime(2024, 12, 13, 21, 29, 12, 840, DateTimeKind.Local).AddTicks(2350),
                             Email = "admin@giris.com",
                             IsActive = true,
                             IsAdmin = true,
                             Name = "Test",
                             Password = "123456*",
                             SurName = "User",
-                            UserGuid = new Guid("bfe7e392-fd42-4c11-a558-c3450f49f6c8"),
+                            UserGuid = new Guid("882be421-e7dd-4393-b060-ed610485f330"),
                             UserName = "Admin"
                         });
                 });
@@ -219,7 +222,7 @@ namespace Eticaret.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2024, 12, 14, 13, 2, 57, 504, DateTimeKind.Local).AddTicks(1307),
+                            CreateDate = new DateTime(2024, 12, 13, 21, 29, 12, 843, DateTimeKind.Local).AddTicks(4315),
                             IsActive = true,
                             IsTopMenu = true,
                             Name = "Çelik Kasalar",
@@ -229,7 +232,7 @@ namespace Eticaret.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2024, 12, 14, 13, 2, 57, 504, DateTimeKind.Local).AddTicks(2076),
+                            CreateDate = new DateTime(2024, 12, 13, 21, 29, 12, 843, DateTimeKind.Local).AddTicks(5186),
                             IsActive = true,
                             IsTopMenu = true,
                             Name = "Para Sayma Makine Sistemleri",
@@ -337,9 +340,6 @@ namespace Eticaret.Data.Migrations
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("OrderName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OrderNo")
                         .IsRequired()

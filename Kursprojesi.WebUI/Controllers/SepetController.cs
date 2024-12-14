@@ -35,14 +35,14 @@ namespace Kursprojesi.WebUI.Controllers
             };
             return View(model);
         }
-        public IActionResult Add(int ProductId ,int quantity = 1)
+        public IActionResult Add(int ProductId, int quantity = 1)
         {
             var product = _serviceProduct.Find(ProductId);
             if (product != null)
             {
                 var cart = GetCart();
-                cart.AddProduct(product,quantity);
-                HttpContext.Session.SetJson("Cart",cart);
+                cart.AddProduct(product, quantity);
+                HttpContext.Session.SetJson("Cart", cart);
                 return Redirect(Request.Headers["Referer"].ToString());
             }
             return RedirectToAction("Index");
@@ -54,7 +54,7 @@ namespace Kursprojesi.WebUI.Controllers
             {
                 var cart = GetCart();
                 cart.RemoveProduct(product);
-                HttpContext.Session.SetJson("Cart",cart);
+                HttpContext.Session.SetJson("Cart", cart);
             }
             return RedirectToAction("Index");
         }
@@ -65,20 +65,20 @@ namespace Kursprojesi.WebUI.Controllers
             {
                 var cart = GetCart();
                 cart.RemoveProduct(product);
-                HttpContext.Session.SetJson("Cart",cart);
+                HttpContext.Session.SetJson("Cart", cart);
             }
             return RedirectToAction("Index");
         }
         [Authorize]
-        public  async Task<IActionResult> SatınAlAsync()
+        public async Task<IActionResult> SatınAlAsync()
         {
             var cart = GetCart();
-            var appUser = await _serviceAppUser.GetAsync(u=> u.UserGuid.ToString() == HttpContext.User.FindFirst("UserGuid").Value);
+            var appUser = await _serviceAppUser.GetAsync(u => u.UserGuid.ToString() == HttpContext.User.FindFirst("UserGuid").Value);
             if (appUser == null)
             {
                 return RedirectToAction("SignIn", "Account");
             }
-            var addresses = await _serviceAddress.GetAllAsync(d =>d.AppUserId == appUser.Id && d.IsActive);
+            var addresses = await _serviceAddress.GetAllAsync(d => d.AppUserId == appUser.Id && d.IsActive);
             var model = new SatınAlViewModel()
             {
                 CartProducts = cart.CartLines,
@@ -87,16 +87,16 @@ namespace Kursprojesi.WebUI.Controllers
             };
             return View(model);
         }
-        [Authorize,HttpPost]
-        public  async Task<IActionResult> SatınAlAsync(string CardNumber, string CardMonth, string CardYear,string CVV,string DeliveryAddress, string BillingAddress)
+        [Authorize, HttpPost]
+        public async Task<IActionResult> SatınAlAsync(string CardNumber, string CardMonth, string CardYear, string CVV, string DeliveryAddress, string BillingAddress)
         {
             var cart = GetCart();
-            var appUser = await _serviceAppUser.GetAsync(u=> u.UserGuid.ToString() == HttpContext.User.FindFirst("UserGuid").Value);
+            var appUser = await _serviceAppUser.GetAsync(u => u.UserGuid.ToString() == HttpContext.User.FindFirst("UserGuid").Value);
             if (appUser == null)
             {
                 return RedirectToAction("SignIn", "Account");
             }
-            var addresses = await _serviceAddress.GetAllAsync(d =>d.AppUserId == appUser.Id && d.IsActive);
+            var addresses = await _serviceAddress.GetAllAsync(d => d.AppUserId == appUser.Id && d.IsActive);
             var model = new SatınAlViewModel()
             {
                 CartProducts = cart.CartLines,
@@ -107,20 +107,21 @@ namespace Kursprojesi.WebUI.Controllers
             {
                 return View(model);
             }
-            var teslimadresi = addresses.FirstOrDefault(b=> b.AddressGuid.ToString() == DeliveryAddress);
-            var faturaadres = addresses.FirstOrDefault(b=> b.AddressGuid.ToString() == BillingAddress);
+            var teslimadresi = addresses.FirstOrDefault(b => b.AddressGuid.ToString() == DeliveryAddress);
+            var faturaadres = addresses.FirstOrDefault(b => b.AddressGuid.ToString() == BillingAddress);
 
             // Ödeme işlemi
 
             var siparis = new Odeme
             {
                 AppUserId = appUser.Id,
-                BillingAddress = $"{faturaadres}",//BillingAddress,
+                BillingAddress = $"{faturaadres.OpenAddress}{faturaadres.District}{faturaadres.City}",//BillingAddress,
                 CustomerId = appUser.UserGuid.ToString(),
-                DeliveryAddress = DeliveryAddress,
+                DeliveryAddress = $"{faturaadres.OpenAddress}{faturaadres.District}{faturaadres.City}",//DeliveryAddress,
                 OrderDate = DateTime.Now,
                 TotalPrice = cart.TotalPrice(),
                 OrderNo = Guid.NewGuid().ToString(),
+                OrderState = 0,
                 OdemeLines = []
             };
 
@@ -135,17 +136,17 @@ namespace Kursprojesi.WebUI.Controllers
                 });
             }
 
-            try
-            {
+            
                 await _serviceOdeme.AddAsync(siparis);
                 var sonuc = await _serviceOdeme.SaveChangesAsync();
                 if (sonuc > 0)
                 {
                     HttpContext.Session.Remove("Cart");
-                    return RedirectToAction("Thanks");  
+                    return RedirectToAction("Thanks");
                 }
-            }
-            catch (Exception)
+           try
+            { }
+            catch (Exception hata)
             {
 
                 TempData["Message"] = "Hata";
@@ -154,12 +155,12 @@ namespace Kursprojesi.WebUI.Controllers
         }
         public IActionResult Thanks()
         {
-            
+
             return View();
         }
         private CartService GetCart()
         {
-            return HttpContext.Session.GetJson<CartService>("Cart")?? new CartService();
+            return HttpContext.Session.GetJson<CartService>("Cart") ?? new CartService();
         }
     }
 }

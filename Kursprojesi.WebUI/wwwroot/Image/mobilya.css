@@ -1,0 +1,165 @@
+.container{
+    max-width: 1000px;
+    margin: auto;
+ 
+    
+    
+  }
+  .pik {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px 20px;
+}
+   header{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px 20px;
+    height: 75px; /* header yüksekliği */
+    box-shadow: 0 2px 5px rgba(193, 223, 2, 0.7);
+  } 
+  ul#menu li{
+    display: inline;
+    padding: 1rem 1.8rem;
+    border-right: 1px solid #dedede;
+  }
+  ul#menu li:last-child{
+    border-right: none;
+  }
+  ul#menu li:hover{
+    border-radius: 2px;
+    background-color: rgb(243,240,174,0.7);
+
+  }
+  a{
+    color: black;
+    text-decoration: none;
+  }
+  ul#menu a:hover{
+    color:brown;
+  }
+  ul#menu li:hover{
+    color: white;
+  }
+  .row{
+    display: flex;
+  }
+  .flexWrap{
+    flex-wrap: wrap;
+  }
+  #neden{
+    background-color: #27354f;
+    padding: 5rem 0;
+    margin: 1.8rem 0;
+    background-image: url('/Odev/odev_resim/e6cae0455540896091598f1a87c3539a12cc526c.webp');
+    box-shadow: 0 4px 5px rgba(50, 53, 37, 0.9);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 0px solid #000;
+    opacity: 0.9;
+    filter: blur(0px);
+  }
+  .neden{
+
+    padding-left: 1.8rem;
+    color: black;
+  }
+  .btn{
+    margin-top:35px;
+  }
+  
+  .kirmiziButon{
+  
+    border-radius: 5px;
+    background-color: darkred;
+    color: white;
+    padding: 10px 25px;
+   
+  }
+  
+  .kirmiziButon:hover{
+    background-color: darkblue;
+  }
+  form input{
+    width: 95%;
+    margin-right: 1rem;
+    min-height: 35px;
+  }
+  form textarea{
+    width: 98%;
+  }
+  footer .row > div{
+    width: 25%;
+  }
+  .footerMenu a{
+    display: block;
+    color: #6b6b6b;
+    margin-bottom: 7px;
+  }
+  .footerMenu a:hover{
+    color: red;
+  
+  }
+  .container2{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+  }
+  .left, .right{
+    width: 45%;
+  }
+  form{
+    margin-top: 10px;
+  }
+  label{
+    display: block;
+    margin-bottom: 5px;
+  }
+
+input, textarea, button {
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+.big_foto{
+  border: 0px solid black;
+  padding-top: 5px;
+  padding-right: 5px;
+padding-left: 5px;
+justify-content: center;
+display: flex;
+
+}
+  /* img{
+    filter: drop-shadow(2px 2px 20px cyan);
+  } */
+  /* classlara nokta ile erişirsin.
+  
+  listemelerein id sine ulasmak için ul#menu (verdiğimiz isim) sonra li {}
+  hover üzerine geldiğinde anlamına geliyor.*/
+  

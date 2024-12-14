@@ -30,7 +30,7 @@ namespace Kursprojesi.WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var odeme = await _context.Odemes
+            var odeme = await _context.Odemes.Include(s=>s.AppUser).Include(s => s.OdemeLines).ThenInclude(p=>p.Product)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (odeme == null)
             {
@@ -47,11 +47,10 @@ namespace Kursprojesi.WebUI.Areas.Admin.Controllers
         }
 
         // POST: Admin/Odemes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,OrderNo,TotalPrice,AppUserId,CustomerId,BillingAddress,DeliveryAddress,OrderDate")] Odeme odeme)
+        public async Task<IActionResult> Create( Odeme odeme)
         {
             if (ModelState.IsValid)
             {
