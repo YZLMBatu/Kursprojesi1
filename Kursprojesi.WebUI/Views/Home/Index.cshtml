@@ -1,50 +1,57 @@
 ﻿@model HomePageViewModel
 
 @{
-    ViewData["Title"] = "Anasayfa";
+	ViewData["Title"] = "Anasayfa";
 }
 
-<partial name="_Slider" model="Model.Slides"/>
+<partial name="_Slider" model="Model.Slides" />
+@if (Model.Products is not null && Model.Products.Count > 0)
+{
+	<div class="my-5">
+		<h1 class="text-center" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">ÜRÜNLERİMİZ</h1>
+		<div class=" row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			@foreach (var item in Model.Products)
+			{
+				<partial name="_ProductView" model="item" />
 
-<div class="my-5" >
-    <h1 class="text-center" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">ÜRÜNLERİMİZ</h1>
-    <div class=" row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-        @foreach (var item in Model.Products)
-        {
-            <partial name="_ProductView" model="item" />
+			}
+		</div>
+	</div>
+}
+@if (Model.News is not null && Model.News.Count >0)
+{
+	
+}
 
-        }
-    </div>
-</div>
 <div style="">
-<h4>Ev Tipi Kasa</h4>
-<p dir="ltr">Ev tipi kasalar evlerinizde güvenle kullanabileceğiniz çelik kasalardır. Bu kasalarda değerli evraklarınızı, nakit paranızı ve mücevherlerinizi güvenle saklayabilirsiniz. ev tipi çelik kasalarda farklı güvenlik kombinasyonları bulunabilmektedir. Dilerseniz duvar kasaları ile evinizde kasanızı gizleyebilirsiniz. Buna ek olarak bazı ev kasa modelleri şunlardır: küçük çelik kasa, şifreli kasa, parmak izli kısa, anahtarlı kasa, çift kombinasyonlu kasa, alarmlı kasa, çekmece içi kasalar, laptop tipi kasalar, saat kasaları. Çekmece içi kasalar özellikle evlerde sık kullanılan modellerden biridir. Ortalama bir çekmece boyutuna sahip olan bu kasalar değerli eşyalarınızı saklama konusunda başarılı olurken aynı zaman gizlenmesi de kolay bir kasadır. Ergonomik ve taşınabilir yapılarıyla güvenliğe ihtiyaç duyduğunuz her alanda sizlere kolaylık sağlayacaktır.</p>
+	<h4>Ev Tipi Kasa</h4>
+	<p dir="ltr">Ev tipi kasalar evlerinizde güvenle kullanabileceğiniz çelik kasalardır. Bu kasalarda değerli evraklarınızı, nakit paranızı ve mücevherlerinizi güvenle saklayabilirsiniz. ev tipi çelik kasalarda farklı güvenlik kombinasyonları bulunabilmektedir. Dilerseniz duvar kasaları ile evinizde kasanızı gizleyebilirsiniz. Buna ek olarak bazı ev kasa modelleri şunlardır: küçük çelik kasa, şifreli kasa, parmak izli kısa, anahtarlı kasa, çift kombinasyonlu kasa, alarmlı kasa, çekmece içi kasalar, laptop tipi kasalar, saat kasaları. Çekmece içi kasalar özellikle evlerde sık kullanılan modellerden biridir. Ortalama bir çekmece boyutuna sahip olan bu kasalar değerli eşyalarınızı saklama konusunda başarılı olurken aynı zaman gizlenmesi de kolay bir kasadır. Ergonomik ve taşınabilir yapılarıyla güvenliğe ihtiyaç duyduğunuz her alanda sizlere kolaylık sağlayacaktır.</p>
 
-<br />
-<h4>Ticari Tip Kasalar</h4>
-<p dir="ltr">Ticari tip kasalar genellikle büyük ticari işletmelerde yer alan kasalardır. Bu kasalarda genellikler değerli evrak ve nakit para saklanabilmektedir. Ayrıca önemli dokümanların da güvenle saklanmasını sağlar. Yüksek kaliteli ticari kasalar çelikten yapılarak oldukça dayanıklı bir kasa modelidir. Ticari tip çelik kasalar herhangi bir kesici delici darbeye karşı oldukça dayanıklı ürünlerdir. Birçok güvenlik önlemine sahip bu kasalar farklı kilit kombinasyonları ile donatılmışlardır. Ticari tip çelik kasalar birçok farklı boyutta bulabilmektedir. İşlem hacmi gereğine göre kolaylıkla her boyutta ticari tip çelik kasa mevcuttur. Bunlara ek olarak ticari tip kasalar ekstra özellikler ile yangına veya suya dayanıklı hale getirilebilirler. Büyük alanlarda bu tip kazalara karşı alınabilecek bu tarz önlemli kasalar güvenliği daha yüksek seviyelere çıkarabilir.</p>
+	<br />
+	<h4>Ticari Tip Kasalar</h4>
+	<p dir="ltr">Ticari tip kasalar genellikle büyük ticari işletmelerde yer alan kasalardır. Bu kasalarda genellikler değerli evrak ve nakit para saklanabilmektedir. Ayrıca önemli dokümanların da güvenle saklanmasını sağlar. Yüksek kaliteli ticari kasalar çelikten yapılarak oldukça dayanıklı bir kasa modelidir. Ticari tip çelik kasalar herhangi bir kesici delici darbeye karşı oldukça dayanıklı ürünlerdir. Birçok güvenlik önlemine sahip bu kasalar farklı kilit kombinasyonları ile donatılmışlardır. Ticari tip çelik kasalar birçok farklı boyutta bulabilmektedir. İşlem hacmi gereğine göre kolaylıkla her boyutta ticari tip çelik kasa mevcuttur. Bunlara ek olarak ticari tip kasalar ekstra özellikler ile yangına veya suya dayanıklı hale getirilebilirler. Büyük alanlarda bu tip kazalara karşı alınabilecek bu tarz önlemli kasalar güvenliği daha yüksek seviyelere çıkarabilir.</p>
 
-<br />
+	<br />
 
-<h4>Yüksek Güvenlikli Çelik Kasalar</h4>
-<p dir="ltr">Yüksek güvenlikli çelik kasa nasıl olmalı? Yüksek güvenliğe sahip olan çelik kasa modelleri kesinlikle 5 mm üzeri çeliğe ve beton dolguya sahip olmalı. Gövdesi ve kapağında beton dolgu olan bir kasanın sıradan bir kasaya göre direnç seviyesi %500 daha fazla olduğunu biliyor musunuz? Yüksek güvenliğe sahip olan bir kasa 200 kg üzeri olmalı.</p>
+	<h4>Yüksek Güvenlikli Çelik Kasalar</h4>
+	<p dir="ltr">Yüksek güvenlikli çelik kasa nasıl olmalı? Yüksek güvenliğe sahip olan çelik kasa modelleri kesinlikle 5 mm üzeri çeliğe ve beton dolguya sahip olmalı. Gövdesi ve kapağında beton dolgu olan bir kasanın sıradan bir kasaya göre direnç seviyesi %500 daha fazla olduğunu biliyor musunuz? Yüksek güvenliğe sahip olan bir kasa 200 kg üzeri olmalı.</p>
 
-<br />
+	<br />
 
-<h4>Para Sayma Makinesi</h4>
-<p dir="ltr">Para sayma makinesi para trafiğinin en yoğun olduğu alanlarda kullanılan bir eşyadır. Parayı en doğru ve hızlı şekilde saymayı sağlar. Nakit paraları çok kısa bir sürede sayabilir. Hata payı oldukça düşük olan bu makinelerden bazı gelişmiş modelleri para türlerini ayırma konusunda da büyük kolaylık sağlar. Para sayma makinelerinin birçoğu sahte paraları tespit edebilmektedir. Para sayma makineleri saydığı paranın toplam değerini de kullanıcıya göstermektedir. Birçok büyük firmada, bankada ve perakende mağazada bulunabilmektedir.</p>
+	<h4>Para Sayma Makinesi</h4>
+	<p dir="ltr">Para sayma makinesi para trafiğinin en yoğun olduğu alanlarda kullanılan bir eşyadır. Parayı en doğru ve hızlı şekilde saymayı sağlar. Nakit paraları çok kısa bir sürede sayabilir. Hata payı oldukça düşük olan bu makinelerden bazı gelişmiş modelleri para türlerini ayırma konusunda da büyük kolaylık sağlar. Para sayma makinelerinin birçoğu sahte paraları tespit edebilmektedir. Para sayma makineleri saydığı paranın toplam değerini de kullanıcıya göstermektedir. Birçok büyük firmada, bankada ve perakende mağazada bulunabilmektedir.</p>
 </div>
 <div class="my-5">
-    <h1 class="text-center">KAMPANYALARIMIZ</h1>
-    <div class="row class=" row gx-4 gx-lg-5 row-cols-2 justify-content-center"">
-        @foreach (var item in Model.News)
-        {
-            <partial name="_NewsView" model="item" />
+	<h1 class="text-center">KAMPANYALARIMIZ</h1>
+	<div class="row class=" row gx-4 gx-lg-5 row-cols-2 justify-content-center"">
+		@foreach (var item in Model.News)
+		{
+			<partial name="_NewsView" model="item" />
 
-        }
-    </div>
+		}
+	</div>
 </div>
 <div style="position: fixed;bottom: 1rem; right: 1rem; width: 25px; background-color: blue; color: white; text-align: center;">
-    <a href="#" style="color: white;"><i class="fa-solid fa-arrow-up"></i></a>
+	<a href="#" style="color: white;"><i class="fa-solid fa-arrow-up"></i></a>
 </div>
 

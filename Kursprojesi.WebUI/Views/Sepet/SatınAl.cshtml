@@ -114,7 +114,7 @@
 									<div class="card-header">
 										<div class="form-check">
 											<label class="form-check-label">
-												<input class="form-check-input" type="radio" name="DeliveryAddress" value="@item.AddressGuid" @(item.IsDeliveryAddress ? "checked" : "") />
+												@Html.RadioButtonFor(Model => Model.Addresses,item.AddressGuid,new {@class = "form-chehc-input"})
 												@item.Title
 											</label>
 										</div>

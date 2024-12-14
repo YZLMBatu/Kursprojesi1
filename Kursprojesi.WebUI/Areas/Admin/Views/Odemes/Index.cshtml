@@ -17,10 +17,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.AppUserId)
             </th>
-            
-            
             <th>
                 @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderState)
             </th>
             <th></th>
         </tr>
@@ -42,6 +43,9 @@
            
             <td>
                 @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.OrderState)
             </td>
                 <td>
                     <a class="btn btn-outline-success btn-sm" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-bars"></i> Düzenle</a>

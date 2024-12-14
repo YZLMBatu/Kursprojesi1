@@ -2,11 +2,11 @@
 
 namespace Eticaret.Core.Entities
 {
-    public class OdemeLine :IEntity
+    public class OdemeLine : IEntity
     {
         public int Id { get; set; }
         [Display(Name = "Sipariş No")]
-        public int  OrderId { get; set; }
+        public int OrderId { get; set; }
         [Display(Name = "Sipariş ")]
         public Odeme? Odeme { get; set; }
         [Display(Name = "Ürün No")]
@@ -17,5 +17,5 @@ namespace Eticaret.Core.Entities
         public int Quantity { get; set; }
         [Display(Name = "Birim Fiyat")]
         public decimal UnitPrice { get; set; }
-}
+    }
 }

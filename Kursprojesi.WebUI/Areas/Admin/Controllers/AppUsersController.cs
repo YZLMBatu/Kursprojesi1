@@ -86,7 +86,7 @@ namespace Kursprojesi.WebUI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id,AppUser appUser)
         {
-            if (id != appUser.Id)
+            if (id == appUser.Id)
             {
                 return NotFound();
             }

@@ -18,7 +18,7 @@
 
 
 			<th>
-				@Html.DisplayNameFor(model => model.OrderDate)
+				@Html.DisplayNameFor(model => model.OrderState)
 			</th>
 			<th>Sipariş özeti</th>
 		</tr>
@@ -39,47 +39,52 @@
 				<td>
 					@item.OdemeLines.Count ürün
 				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.OrderState)
+				</td>
 
 			</tr>
 			<tr>
-				<table class="table table-sm">
-					<tr>
-						<th></th>
-						<th>ÜRÜN</th>
-						<th>FİYAT</th>
-						<th>ADET</th>
-						<th>TOPLAM</th>
-					</tr>
-					<tbody>
+				<td colspan="5">
+					<table class="table table-sm">
+						<tr>
+							<th></th>
+							<th>ÜRÜN</th>
+							<th>FİYAT</th>
+							<th>ADET</th>
+							<th>TOPLAM</th>
+						</tr>
+						<tbody>
 
-						@foreach (var item2 in item.OdemeLines)
-						{
-							<tr>
-								<td>
-									<img src="/Image/Product/@item2.Product.Image" height="40" />
-								</td>
-								<td>
-									<a class="nav-link text-dark" href="/Products/Details/@item2.Product.Id">
-										@item2.Product.Name
-									</a>
-								</td>
-								<td>
-									@item2.UnitPrice.ToString("c")
-								</td>
-								<td>
-									@item2.Quantity
-								</td>
-								<td>
-									@((item2.Quantity * item2.UnitPrice).ToString("c"))
-								</td>
+							@foreach (var item2 in item.OdemeLines)
+							{
+								<tr>
+									<td>
+										<img src="/Image/Product/@item2.Product.Image" height="40" />
+									</td>
+									<td>
+										<a class="nav-link text-dark" href="/Products/Details/@item2.Product.Id">
+											@item2.Product.Name
+										</a>
+									</td>
+									<td>
+										@item2.UnitPrice.ToString("c")
+									</td>
+									<td>
+										@item2.Quantity
+									</td>
+									<td>
+										@((item2.Quantity * item2.UnitPrice).ToString("c"))
+									</td>
 
-							</tr>
-						}
+								</tr>
+							}
 
 
-					</tbody>
+						</tbody>
 
-				</table>
+					</table>
+				</td>
 
 			</tr>
 		}

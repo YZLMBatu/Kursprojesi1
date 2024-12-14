@@ -139,16 +139,16 @@ namespace Kursprojesi.WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products
-                .Include(p => p.Brand)
-                .Include(p => p.category)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
+                var product = await _context.Products
+                    .Include(p => p.Brand)
+                    .Include(p => p.category)
+                    .FirstOrDefaultAsync(m => m.Id == id);
+                if (product == null)
+                {
+                    return NotFound();
+                }
 
-            return View(product);
+                return View(product);
         }
 
         // POST: Admin/Products/Delete/5
