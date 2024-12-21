@@ -15,6 +15,7 @@ namespace Eticaret.Core.Entities
         public string OpenAddress { get; set; }
         [Display(Name = "Aktif")]
         public bool IsActive { get; set; }
+        [Display(Name = "Fatura Adresi")]
         public bool IsBillingAddress { get; set; }
         [Display(Name = "Teslimat Adresi")]
         public bool IsDeliveryAddress { get; set; }

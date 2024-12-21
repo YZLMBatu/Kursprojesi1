@@ -9,7 +9,7 @@
 {
 	<div class="my-5">
 		<h1 class="text-center" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">ÜRÜNLERİMİZ</h1>
-		<div class=" row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 			@foreach (var item in Model.Products)
 			{
 				<partial name="_ProductView" model="item" />
@@ -43,7 +43,7 @@
 </div>
 <div class="my-5">
 	<h1 class="text-center">KAMPANYALARIMIZ</h1>
-	<div class="row class=" row gx-4 gx-lg-5 row-cols-2 justify-content-center"">
+	<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 		@foreach (var item in Model.News)
 		{
 			<partial name="_NewsView" model="item" />
@@ -54,4 +54,11 @@
 <div style="position: fixed;bottom: 1rem; right: 1rem; width: 25px; background-color: blue; color: white; text-align: center;">
 	<a href="#" style="color: white;"><i class="fa-solid fa-arrow-up"></i></a>
 </div>
+<div style="position: fixed;bottom: 24rem; right: 2.8rem; width: 25px; text-align: center;">
+	<a href="https://api.whatsapp.com/send/?phone=905321619927&text=Merhaba+%0D%0A%C3%9Cr%C3%BCn+hakk%C4%B1nda+bilgi+almak+istiyorum&type=phone_number&app_absent=0">
+		<img src="/Image/images.jpeg" height="250px" alt="" /></a>
+</div>
+
+
+
 

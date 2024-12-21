@@ -28,10 +28,10 @@
                         Sepete Ekle
                     </button>
                     </form>
-                    <form asp-action="Add" asp-controller="Favori" class="d-flex ms-4">
+                    <form asp-action="Add" asp-controller="Favori" target="_blank" class="d-flex ms-4">
                         <input type="hidden" name="ProductId" value="@Model.Product.Id"/>
                     
-                    <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                    <button class="btn btn-outline-dark flex-shrink-0" formtarget="_blank" type="submit">
                         <i class="bi-heart me-1"></i>
                         Favorilere Ekle
                     </button>

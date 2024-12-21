@@ -6,14 +6,14 @@
 
 <h1>@Model.Name</h1>
 
-<div class="row" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
 	<div class="col col-md-6">
 		<img src="/Image/@Model.Image" alt="@Model.Name" class="img-fliud" />
 	</div>
 	<div class="col col-md-6" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
 		@Model.Description
 		<p>
-			@Model.CreateDate.ToShortDateString()
+			
 		</p>
 	</div>
 </div>

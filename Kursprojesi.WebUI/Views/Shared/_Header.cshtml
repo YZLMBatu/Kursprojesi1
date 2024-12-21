@@ -19,41 +19,6 @@
 	</form>
 
 
-	<div class="raw" style="margin-left:37rem; font-size:15px; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
-		@if (Context.User.Identity.IsAuthenticated)
-		{
-			<div class="dropdown">
-
-				<a class="dropdown-toggle nav-link text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
-					HESABIM
-				</a>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="/Account">KULLANICI BİLGİLERİ</a></li>
-					<li><a class="dropdown-item" href="/Adres">ADRESLERİM</a></li>
-					<li><a class="dropdown-item" href="/Account/Orders">SİPARİŞLERİM</a></li>
-					<li><a class="dropdown-item" href="/Account/SignOut/">OTURUMU KAPAT</a></li>
-
-
-				</ul>
-			</div>
-		}
-		else
-		{
-			<div class="dropdown">
-				<a class="dropdown-toggle nav-link text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-					GİRİŞ YAP
-				</a>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="/Account/SignIn/">GİRİŞ</a></li>
-					<li><a class="dropdown-item" href="/Account/SignUp/">ÜYE OL</a></li>
-
-
-				</ul>
-			</div>
-		}
-
-	</div>
-
 </nav>
 <header>
 	<nav class="navbar navbar-expand-sm justify-content-evenly" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size:14px; ">
@@ -65,7 +30,7 @@
 
 			</button>
 
-			<div class="navbar-collapse collapse d-sm-inline-flex ">
+			<div class="navbar-collapse collapse d-sm-inline-flex">
 				<ul class="navbar-nav ">
 					<li class="nav-item">
 						<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"></a>
@@ -79,13 +44,15 @@
 
 			</div>
 			<div class="dropdown mx-3">
-				<a class=" nav-link text-dark" style="margin-left:6rem; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" href="/Favori" role="button">
+				<a class=" nav-link text-dark" style=" font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" href="/Favori" role="button">
 					<i class="fa-regular fa-heart"></i>
 					FAVORİLERİM
 				</a>
+
 			</div>
 
-			<div class="dropdown" style=" font-size:15px; margin-right:11rem; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+
+			<div class="navbar navbar-expand-sm justify-content-evenly" style=" font-size:15px; margin-right:8rem; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
 				@{
 					var cart = Context.Session.GetJson<Eticaret.Service.Concrate.CartService>("Cart");
 					if (cart != null && cart.CartLines.Count > 0)
@@ -103,7 +70,7 @@
 							{
 								<li>
 									<a class="dropdown-item" href="/Products/Details/@item.Product.Id">
-										<img src="/Image//Product/@item.Product.Image" height="75" alt="" />
+										<img src="/Image//Product/@item.Product.Image" height="50" alt="" />
 										@item.Product.Price.ToString("c")
 									</a>
 								</li>
@@ -125,8 +92,42 @@
 
 				}
 			</div>
+			<div class="navbar navbar-expand-sm justify-content-between" style="margin-right:7rem; font-size:15px; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+				@if (Context.User.Identity.IsAuthenticated)
+				{
+					<div class="dropdownn">
 
+						<a class="dropdown-toggle nav-link text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+							HESABIM
+						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="/Account">KULLANICI BİLGİLERİ</a></li>
+							<li><a class="dropdown-item" href="/Adres">ADRESLERİM</a></li>
+							<li><a class="dropdown-item" href="/Account/Orders">SİPARİŞLERİM</a></li>
+							<li><a class="dropdown-item" href="/Account/SignOut/">OTURUMU KAPAT</a></li>
+
+
+						</ul>
+					</div>
+				}
+				else
+				{
+					<div class="dropdownn">
+						<a class="dropdown-toggle nav-link text-dark d-sm-inline-flex" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							GİRİŞ YAP
+						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="/Account/SignIn/">GİRİŞ</a></li>
+							<li><a class="dropdown-item" href="/Account/SignUp/">ÜYE OL</a></li>
+
+
+						</ul>
+					</div>
+				}
+
+			</div>
 		</div>
+
 
 
 
@@ -136,8 +137,6 @@
 					<input name="q" type="search" class="form-control" placeholder="" aria-label="Search" />
 					<i class="fa-solid fa-magnifying-glass"></i>
 				</form> *@
-
-
 
 	</nav>
 

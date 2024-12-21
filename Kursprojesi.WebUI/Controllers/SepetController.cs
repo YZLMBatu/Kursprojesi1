@@ -136,7 +136,8 @@ namespace Kursprojesi.WebUI.Controllers
                 });
             }
 
-            
+            try
+            {
                 await _serviceOdeme.AddAsync(siparis);
                 var sonuc = await _serviceOdeme.SaveChangesAsync();
                 if (sonuc > 0)
@@ -144,9 +145,8 @@ namespace Kursprojesi.WebUI.Controllers
                     HttpContext.Session.Remove("Cart");
                     return RedirectToAction("Thanks");
                 }
-           try
-            { }
-            catch (Exception hata)
+            }
+            catch (Exception )
             {
 
                 TempData["Message"] = "Hata";

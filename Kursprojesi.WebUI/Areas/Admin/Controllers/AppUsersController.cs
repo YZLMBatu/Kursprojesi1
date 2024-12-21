@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Kursprojesi.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin"), Authorize]
-    [Authorize]
+    
     public class AppUsersController : Controller
     {
         private readonly DatabaseContext _context;

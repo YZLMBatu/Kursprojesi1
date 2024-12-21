@@ -162,5 +162,9 @@ namespace Kursprojesi.WebUI.Controllers
             await HttpContext.SignOutAsync();
             return RedirectToAction("SignIn");
         }
+        public IActionResult SifremiUnuttum()
+        {
+            return View();
+        }
     }
 }

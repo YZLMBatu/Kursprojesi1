@@ -30,6 +30,7 @@ namespace Kursprojesi.WebUI.Controllers
             {
                 favoriler.Add(product);
                 HttpContext.Session.SetJson("GetFavori",favoriler);
+                return Redirect(Request.Headers["Referer"].ToString());
             }
             return RedirectToAction("Index");
         }

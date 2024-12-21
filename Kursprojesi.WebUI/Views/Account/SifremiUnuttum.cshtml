@@ -1,0 +1,33 @@
+﻿@model Contact
+
+@{
+    ViewData["Title"] = "Şifremi Unuttum";
+}
+<h4>Şifre Yenileme</h4>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ContactUs">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mt-2">
+                <input type="submit" value="GÖNDER" class="btn btn-primary" />
+
+            </div>
+        </form>
+    </div>
+   
+</div>
+

@@ -50,6 +50,10 @@ namespace Kursprojesi.WebUI.Controllers
         {
             return View();
         }
+        public IActionResult SifremiUnuttum()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<IActionResult> ContactUs(Contact contact)
         {
