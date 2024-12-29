@@ -1,8 +1,6 @@
 ﻿using Eticaret.Core.Entities;
-using Eticaret.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.Options;
 using System.Reflection;
 
 namespace Eticaret.Data
@@ -22,7 +20,8 @@ namespace Eticaret.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;DataBase=KursprojesiDb;Trusted_Connection=True; TrustServerCertificate=True;");
+            //optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;DataBase=KursprojesiDb;Trusted_Connection=True; TrustServerCertificate=True;"); 
+            optionsBuilder.UseSqlServer(@"Server=104.247.167.130\MSSQLSERVER2022; DataBase=yilmazk7_db; uid=yilmazk7_db; pwd=Enpn^d&v8v9wD8La; TrustServerCertificate=True;"); // Enpn^d&v8v9wD8La
 
             optionsBuilder.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
 
@@ -33,6 +32,7 @@ namespace Eticaret.Data
             //modelBuilder.ApplyConfiguration(new AppUserConfiguration());
             //modelBuilder.ApplyConfiguration(new BrandConfiguration());
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); // çalışan dll içinden bul
+            modelBuilder.HasDefaultSchema("dbo");
             base.OnModelCreating(modelBuilder);
         }
     }

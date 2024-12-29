@@ -13,17 +13,17 @@
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
+                <input asp-for="Title" class="form-control" disabled />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="City" class="control-label"></label>
-                <input asp-for="City" class="form-control" />
+                <input asp-for="City" class="form-control" disabled />
                 <span asp-validation-for="City" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="District" class="control-label"></label>
-                <input asp-for="District" class="form-control" />
+                <input asp-for="District" class="form-control" disabled />
                 <span asp-validation-for="District" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -33,22 +33,22 @@
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                    <input class="form-check-input" asp-for="IsActive" disabled /> @Html.DisplayNameFor(model => model.IsActive)
                 </label>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsBillingAddress" /> @Html.DisplayNameFor(model => model.IsBillingAddress)
+                    <input class="form-check-input" asp-for="IsBillingAddress" disabled  /> @Html.DisplayNameFor(model => model.IsBillingAddress)
                 </label>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsDeliveryAddress" /> @Html.DisplayNameFor(model => model.IsDeliveryAddress)
+                    <input class="form-check-input" asp-for="IsDeliveryAddress" disabled /> @Html.DisplayNameFor(model => model.IsDeliveryAddress)
                 </label>
             </div>
             <div class="form-group">
                 <label asp-for="AppUserId" class="control-label"></label>
-                <select asp-for="AppUserId" class="form-select" asp-items="ViewBag.AppUserId"></select>
+                <select asp-for="AppUserId" class="form-select" asp-items="ViewBag.AppUserId" disabled></select>
                 <span asp-validation-for="AppUserId" class="text-danger"></span>
             </div>
             <div class="form-group mt-2">

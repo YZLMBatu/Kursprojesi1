@@ -17,6 +17,7 @@ namespace Eticaret.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("dbo")
                 .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -71,7 +72,7 @@ namespace Eticaret.Data.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", "dbo");
                 });
 
             modelBuilder.Entity("Eticaret.Core.Entities.AppUser", b =>
@@ -124,20 +125,20 @@ namespace Eticaret.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppUsers");
+                    b.ToTable("AppUsers", "dbo");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2024, 12, 14, 13, 2, 57, 501, DateTimeKind.Local).AddTicks(3719),
+                            CreateDate = new DateTime(2024, 12, 23, 22, 37, 22, 251, DateTimeKind.Local).AddTicks(426),
                             Email = "admin@giris.com",
                             IsActive = true,
                             IsAdmin = true,
                             Name = "Test",
                             Password = "123456*",
                             SurName = "User",
-                            UserGuid = new Guid("bfe7e392-fd42-4c11-a558-c3450f49f6c8"),
+                            UserGuid = new Guid("ecae4900-476b-4da2-b06a-fb8e0e341157"),
                             UserName = "Admin"
                         });
                 });
@@ -173,7 +174,7 @@ namespace Eticaret.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands");
+                    b.ToTable("Brands", "dbo");
                 });
 
             modelBuilder.Entity("Eticaret.Core.Entities.Category", b =>
@@ -213,13 +214,13 @@ namespace Eticaret.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", "dbo");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2024, 12, 14, 13, 2, 57, 504, DateTimeKind.Local).AddTicks(1307),
+                            CreateDate = new DateTime(2024, 12, 23, 22, 37, 22, 254, DateTimeKind.Local).AddTicks(5458),
                             IsActive = true,
                             IsTopMenu = true,
                             Name = "Çelik Kasalar",
@@ -229,7 +230,7 @@ namespace Eticaret.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2024, 12, 14, 13, 2, 57, 504, DateTimeKind.Local).AddTicks(2076),
+                            CreateDate = new DateTime(2024, 12, 23, 22, 37, 22, 254, DateTimeKind.Local).AddTicks(6509),
                             IsActive = true,
                             IsTopMenu = true,
                             Name = "Para Sayma Makine Sistemleri",
@@ -274,7 +275,7 @@ namespace Eticaret.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", "dbo");
                 });
 
             modelBuilder.Entity("Eticaret.Core.Entities.News", b =>
@@ -306,7 +307,7 @@ namespace Eticaret.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("News");
+                    b.ToTable("News", "dbo");
                 });
 
             modelBuilder.Entity("Eticaret.Core.Entities.Odeme", b =>
@@ -356,7 +357,7 @@ namespace Eticaret.Data.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Odemes");
+                    b.ToTable("Odemes", "dbo");
                 });
 
             modelBuilder.Entity("Eticaret.Core.Entities.OdemeLine", b =>
@@ -388,7 +389,7 @@ namespace Eticaret.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OdemeLines");
+                    b.ToTable("OdemeLines", "dbo");
                 });
 
             modelBuilder.Entity("Eticaret.Core.Entities.Product", b =>
@@ -445,7 +446,7 @@ namespace Eticaret.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", "dbo");
                 });
 
             modelBuilder.Entity("Eticaret.Core.Entities.Slide", b =>
@@ -474,7 +475,7 @@ namespace Eticaret.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Slides");
+                    b.ToTable("Slides", "dbo");
                 });
 
             modelBuilder.Entity("Eticaret.Core.Entities.Address", b =>

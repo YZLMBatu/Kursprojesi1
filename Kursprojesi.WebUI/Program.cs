@@ -24,7 +24,7 @@ namespace Kursprojesi.WebUI
                 x.LoginPath = "/Account/SignIn";
                 x.AccessDeniedPath = "/AccessDenied";
                 x.Cookie.Name = "Account";
-                x.Cookie.MaxAge = TimeSpan.FromDays(2);
+                x.Cookie.MaxAge = TimeSpan.FromDays(7);
                 
                 x.Cookie.IsEssential = true;
                 

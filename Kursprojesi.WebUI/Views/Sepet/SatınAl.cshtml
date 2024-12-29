@@ -1,12 +1,12 @@
 ﻿@model SatınAlViewModel
 
 @{
-	ViewData["Title"] = "SATIN AL";
+	ViewData["Title"] = "Sipariş Ver";
 }
 
 <section class="container my-5">
 	<div class="text-center">
-		<h1 class="display-4">SATIN AL</h1>
+		<h1 class="display-4">Sipariş Ver</h1>
 	</div>
 
 	@if (Model.CartProducts.Any())
@@ -70,7 +70,7 @@
 					<tr>
 						<td>Kargo(1000 TL ÜZERİ ÜCRETSİZ)</td>
 						<td>
-							@(Model.TotalPrice > 1000 ? "ÜCRETSİZ KARGO" : Model.CartProducts.Any() ? "99$" : "0$")
+							@(Model.TotalPrice > 1000 ? "ÜCRETSİZ KARGO" : Model.CartProducts.Any() ? "99" : "0")
 						</td>
 					</tr>
 
@@ -191,7 +191,7 @@
 					</div>
 					<button type="submit" class="btn btn-light mt-2">Ödeme Yap</button>
 				</div>
-			</form>
+			</form> 
 		}
 
 	}

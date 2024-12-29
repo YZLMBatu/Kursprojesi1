@@ -6,15 +6,15 @@
 <section class="">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="/Image/Product/@Model.Product.Image" alt="..." height="300"></div>
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="/Image/Product/@Model.Product.Image" alt="..." height="500"></div>
             <div class="col-md-6">
                 <div class="small mb-1">SKU: @Model.Product.ProductCode</div>
                 <h1 class="display-5 fw-bolder">
                     @Model.Product.Name
                 </h1>
                 <div class="fs-5 mb-5">
-                    @* <span class="text-decoration-line-through">$45.00</span> *@
-                    <span>@Model.Product.Price.ToString("c")</span>
+                    
+                    <span>@Model.Product.Price.ToString("c")₺</span>
                 </div>
                 <p class="lead">
                     @Model.Product.Description
@@ -29,7 +29,7 @@
                     </button>
                     </form>
                     <form asp-action="Add" asp-controller="Favori" target="_blank" class="d-flex ms-4">
-                        <input type="hidden" name="ProductId" value="@Model.Product.Id"/>
+                        <input type="hidden"  name="ProductId" value="@Model.Product.Id"/>
                     
                     <button class="btn btn-outline-dark flex-shrink-0" formtarget="_blank" type="submit">
                         <i class="bi-heart me-1"></i>

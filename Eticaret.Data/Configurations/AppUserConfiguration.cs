@@ -23,7 +23,7 @@ namespace Eticaret.Data.Configurations
                     IsActive = true,
                     IsAdmin = true,
                     Name = "Test",
-                    Password = "123456*",
+                    Password = "123456*7",
                     SurName = "User"
                 }
                 );

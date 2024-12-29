@@ -12,14 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eticaret.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20241212191848_AdresleriEkle")]
-    partial class AdresleriEkle
+    [Migration("20241223193723_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("dbo")
                 .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -74,7 +75,7 @@ namespace Eticaret.Data.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", "dbo");
                 });
 
             modelBuilder.Entity("Eticaret.Core.Entities.AppUser", b =>
@@ -127,20 +128,20 @@ namespace Eticaret.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppUsers");
+                    b.ToTable("AppUsers", "dbo");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2024, 12, 12, 22, 18, 46, 976, DateTimeKind.Local).AddTicks(6420),
+                            CreateDate = new DateTime(2024, 12, 23, 22, 37, 22, 251, DateTimeKind.Local).AddTicks(426),
                             Email = "admin@giris.com",
                             IsActive = true,
                             IsAdmin = true,
                             Name = "Test",
                             Password = "123456*",
                             SurName = "User",
-                            UserGuid = new Guid("a77f96fe-978f-4587-b619-f6244bdd5780"),
+                            UserGuid = new Guid("ecae4900-476b-4da2-b06a-fb8e0e341157"),
                             UserName = "Admin"
                         });
                 });
@@ -176,7 +177,7 @@ namespace Eticaret.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands");
+                    b.ToTable("Brands", "dbo");
                 });
 
             modelBuilder.Entity("Eticaret.Core.Entities.Category", b =>
@@ -216,13 +217,13 @@ namespace Eticaret.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", "dbo");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2024, 12, 12, 22, 18, 46, 979, DateTimeKind.Local).AddTicks(7575),
+                            CreateDate = new DateTime(2024, 12, 23, 22, 37, 22, 254, DateTimeKind.Local).AddTicks(5458),
                             IsActive = true,
                             IsTopMenu = true,
                             Name = "Çelik Kasalar",
@@ -232,7 +233,7 @@ namespace Eticaret.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2024, 12, 12, 22, 18, 46, 979, DateTimeKind.Local).AddTicks(8344),
+                            CreateDate = new DateTime(2024, 12, 23, 22, 37, 22, 254, DateTimeKind.Local).AddTicks(6509),
                             IsActive = true,
                             IsTopMenu = true,
                             Name = "Para Sayma Makine Sistemleri",
@@ -277,7 +278,7 @@ namespace Eticaret.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", "dbo");
                 });
 
             modelBuilder.Entity("Eticaret.Core.Entities.News", b =>
@@ -309,7 +310,89 @@ namespace Eticaret.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("News");
+                    b.ToTable("News", "dbo");
+                });
+
+            modelBuilder.Entity("Eticaret.Core.Entities.Odeme", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BillingAddress")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("CustomerId")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("DeliveryAddress")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OrderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrderNo")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("OrderState")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("Odemes", "dbo");
+                });
+
+            modelBuilder.Entity("Eticaret.Core.Entities.OdemeLine", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("OdemeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OdemeId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OdemeLines", "dbo");
                 });
 
             modelBuilder.Entity("Eticaret.Core.Entities.Product", b =>
@@ -366,7 +449,7 @@ namespace Eticaret.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", "dbo");
                 });
 
             modelBuilder.Entity("Eticaret.Core.Entities.Slide", b =>
@@ -395,7 +478,7 @@ namespace Eticaret.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Slides");
+                    b.ToTable("Slides", "dbo");
                 });
 
             modelBuilder.Entity("Eticaret.Core.Entities.Address", b =>
@@ -405,6 +488,34 @@ namespace Eticaret.Data.Migrations
                         .HasForeignKey("AppUserId");
 
                     b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("Eticaret.Core.Entities.Odeme", b =>
+                {
+                    b.HasOne("Eticaret.Core.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("Eticaret.Core.Entities.OdemeLine", b =>
+                {
+                    b.HasOne("Eticaret.Core.Entities.Odeme", "Odeme")
+                        .WithMany("OdemeLines")
+                        .HasForeignKey("OdemeId");
+
+                    b.HasOne("Eticaret.Core.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Odeme");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Eticaret.Core.Entities.Product", b =>
@@ -437,6 +548,11 @@ namespace Eticaret.Data.Migrations
             modelBuilder.Entity("Eticaret.Core.Entities.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Eticaret.Core.Entities.Odeme", b =>
+                {
+                    b.Navigation("OdemeLines");
                 });
 #pragma warning restore 612, 618
         }

@@ -21,6 +21,7 @@ namespace Kursprojesi.WebUI.Controllers
         private List<Product> GetFavori()
         {
             return HttpContext.Session.GetJson<List<Product>>("GetFavori") ?? [];
+
         }
         public IActionResult Add(int ProductId)
         {

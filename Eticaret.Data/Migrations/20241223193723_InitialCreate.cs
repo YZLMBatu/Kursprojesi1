@@ -13,8 +13,12 @@ namespace Eticaret.Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "dbo");
+
             migrationBuilder.CreateTable(
                 name: "AppUsers",
+                schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -37,6 +41,7 @@ namespace Eticaret.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Brands",
+                schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -55,6 +60,7 @@ namespace Eticaret.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Categories",
+                schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -75,6 +81,7 @@ namespace Eticaret.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Contacts",
+                schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -93,6 +100,7 @@ namespace Eticaret.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "News",
+                schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -110,6 +118,7 @@ namespace Eticaret.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Slides",
+                schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -125,7 +134,66 @@ namespace Eticaret.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Addresses",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    City = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    District = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    OpenAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsBillingAddress = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeliveryAddress = table.Column<bool>(type: "bit", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AddressGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    AppUserId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Addresses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Addresses_AppUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalSchema: "dbo",
+                        principalTable: "AppUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Odemes",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OrderNo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    AppUserId = table.Column<int>(type: "int", nullable: false),
+                    CustomerId = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    BillingAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    DeliveryAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    OrderState = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Odemes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Odemes_AppUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalSchema: "dbo",
+                        principalTable: "AppUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
+                schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -138,9 +206,8 @@ namespace Eticaret.Data.Migrations
                     Stock = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     IsHome = table.Column<bool>(type: "bit", nullable: false),
-                    IsTopMenu = table.Column<bool>(type: "bit", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: true),
-                    BrandId = table.Column<int>(type: "int", nullable: true),
+                    BrandId = table.Column<int>(type: "int", nullable: false),
                     OrderNo = table.Column<int>(type: "int", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -150,36 +217,98 @@ namespace Eticaret.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Products_Brands_BrandId",
                         column: x => x.BrandId,
+                        principalSchema: "dbo",
                         principalTable: "Brands",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
+                        principalSchema: "dbo",
                         principalTable: "Categories",
                         principalColumn: "Id");
                 });
 
-            migrationBuilder.InsertData(
-                table: "AppUsers",
-                columns: new[] { "Id", "CreateDate", "Email", "IsActive", "IsAdmin", "Name", "Password", "Phone", "SurName", "UserGuid", "UserName" },
-                values: new object[] { 1, new DateTime(2024, 11, 6, 23, 8, 23, 145, DateTimeKind.Local).AddTicks(26), "admin@giris.com", true, true, "Test", "123456*", null, "User", new Guid("415d44b0-00da-40d2-9dc1-63c57055df99"), "Admin" });
+            migrationBuilder.CreateTable(
+                name: "OdemeLines",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
+                    OdemeId = table.Column<int>(type: "int", nullable: true),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OdemeLines", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OdemeLines_Odemes_OdemeId",
+                        column: x => x.OdemeId,
+                        principalSchema: "dbo",
+                        principalTable: "Odemes",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_OdemeLines_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalSchema: "dbo",
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "AppUsers",
+                columns: new[] { "Id", "CreateDate", "Email", "IsActive", "IsAdmin", "Name", "Password", "Phone", "SurName", "UserGuid", "UserName" },
+                values: new object[] { 1, new DateTime(2024, 12, 23, 22, 37, 22, 251, DateTimeKind.Local).AddTicks(426), "admin@giris.com", true, true, "Test", "123456*", null, "User", new Guid("ecae4900-476b-4da2-b06a-fb8e0e341157"), "Admin" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
                 table: "Categories",
                 columns: new[] { "Id", "CreateDate", "Descripton", "Image", "IsActive", "IsTopMenu", "Name", "OrderNo", "ParentId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 11, 6, 23, 8, 23, 145, DateTimeKind.Local).AddTicks(2492), null, null, true, true, "Çelik Kasalar", 1, 0 },
-                    { 2, new DateTime(2024, 11, 6, 23, 8, 23, 145, DateTimeKind.Local).AddTicks(2502), null, null, true, true, "Para Sayma Makine Sistemleri", 1, 0 }
+                    { 1, new DateTime(2024, 12, 23, 22, 37, 22, 254, DateTimeKind.Local).AddTicks(5458), null, null, true, true, "Çelik Kasalar", 1, 0 },
+                    { 2, new DateTime(2024, 12, 23, 22, 37, 22, 254, DateTimeKind.Local).AddTicks(6509), null, null, true, true, "Para Sayma Makine Sistemleri", 1, 0 }
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Addresses_AppUserId",
+                schema: "dbo",
+                table: "Addresses",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OdemeLines_OdemeId",
+                schema: "dbo",
+                table: "OdemeLines",
+                column: "OdemeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OdemeLines_ProductId",
+                schema: "dbo",
+                table: "OdemeLines",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Odemes_AppUserId",
+                schema: "dbo",
+                table: "Odemes",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_BrandId",
+                schema: "dbo",
                 table: "Products",
                 column: "BrandId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
+                schema: "dbo",
                 table: "Products",
                 column: "CategoryId");
         }
@@ -188,25 +317,44 @@ namespace Eticaret.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AppUsers");
+                name: "Addresses",
+                schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "Contacts");
+                name: "Contacts",
+                schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "News");
+                name: "News",
+                schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "OdemeLines",
+                schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "Slides");
+                name: "Slides",
+                schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "Brands");
+                name: "Odemes",
+                schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Products",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "AppUsers",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "Brands",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "Categories",
+                schema: "dbo");
         }
     }
 }

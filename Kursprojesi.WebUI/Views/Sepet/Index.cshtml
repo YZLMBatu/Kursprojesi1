@@ -78,7 +78,7 @@
 					<tr>
 						<td>Kargo(1000 TL ÜZERİ ÜCRETSİZ)</td>
 						<td>
-							@(Model.TotalPrice > 1000 ? "ÜCRETSİZ KARGO" : Model.CartLines.Any() ? "99$" : "0$")
+							@(Model.TotalPrice > 1000 ? "ÜCRETSİZ KARGO" : Model.CartLines.Any() ? "99" : "0")
 						</td>
 					</tr>
 					
@@ -96,7 +96,7 @@
 						Alışverişe Devam Et
 
 					</a>
-					<a href="/Sepet/SatınAl" class="btn btn-danger">Satın Al</a>
+					<a href="/Sepet/SatınAl" class="btn btn-danger">Sipariş Ver</a>
 				</div>
 
 				
